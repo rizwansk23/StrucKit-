@@ -1,0 +1,66 @@
+import { useState } from "react";
+import type { datavalue } from "../../Data/sidebar";
+import { ChevronRight, } from "lucide-react";
+import { Link } from "react-router-dom";
+
+
+
+export const Datastructure: React.FC<{ item: datavalue }> = ({ item }) => {
+
+    const [isopen, setisopen] = useState<boolean>(false);
+
+    const hasChildren = item.subtopic && item.subtopic.length > 0;
+
+    const Url = item.topic.replaceAll(' ', '')
+
+    return (
+
+        <li className="list-disc text-text my-2">
+            {!hasChildren
+                ?
+                <Link to={`${Url}`}>
+                    <div
+                        onClick={() => setisopen(!isopen)}
+                        className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5  ${hasChildren ? 'cursor-pointer border border-border rounded-xl  ' : 'cursor-default'}`}>
+                        {item.icon ?
+                            <div className="border border-border rounded-lg p-1 text-green-800 bg-green-100">
+                                {<item.icon className="size-6" />}
+                            </div>
+                            : null
+                        }
+                        <h1 className="flex-1">
+                            {item.topic}
+                        </h1>
+                        {hasChildren ? <ChevronRight size={24} className={`${isopen ? 'rotate-90' : 'rotate-0 '} transition-all ease-in-out duration-200 `} /> : null}
+                    </div>
+                </Link>
+                :
+                <div
+                    onClick={() => setisopen(!isopen)}
+                    className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5  ${hasChildren ? 'cursor-pointer border border-border rounded-xl  ' : 'cursor-default'}`}>
+                    {item.icon ?
+                        <div className="border border-border rounded-lg p-1 text-green-800 bg-green-100">
+                            {<item.icon className="size-6" />}
+                        </div>
+                        : null
+                    }
+                    <h1 className="flex-1">
+                        {item.topic}
+                    </h1>
+                    {hasChildren ? <ChevronRight size={24} className={`${isopen ? 'rotate-90' : 'rotate-0 '} transition-all ease-in-out duration-200 `} /> : null}
+                </div>
+            }
+            {hasChildren && isopen && (
+                <ul className={`${item.topic == 'Data Structure' ? null : ` border-border ml-5 pl-6 `}`}>
+                    {
+                        item.subtopic?.map((child: any, index: number) => (
+                            <Datastructure item={child} key={index} />
+                        ))
+                    }
+                </ul>
+            )}
+        </li>
+    )
+}
+
+

@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-bg: #ffffff;
+  --color-primary: #f5f5f5;
+  --color-secondry: #ffffff;
+
+  --color-dark-green: #1a4645;
+  --color-light-green: #266867;
+  --color-orange: #f58800;
+  --color-yellow: #f8bc27;
+  --color-border: #0D1117;
+  --color-text: #0D1117;
+  --color-tile-shadow: #e5e4e2;
+}
+
+@layer theme {
+  :root {
+    @variant dark {
+      --color-brand-bg: #0f172a;
+      --color-primary: #0d1117;
+      --color-secondry: #0a0e14;
+      --color-dark-green: #1a4645;
+      --color-light-green: #266867;
+      --color-orange: #f58800;
+      --color-yellow: #f8bc27;
+      /* --color-border: #f5f5f5;   */
+     --color-border: #494B4C;
+      --color-text: #ffffff;
+      --color-tile-shadow: #364153;
+    }
+  }
+}
+
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+/* Hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
