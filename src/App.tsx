@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Home from "./Pages/Home";
-import Stack from "./Pages/Stack";
+import Home from "./Layout/Main/Home";
+import Stack from "./Layout/DataStructure-layout/DataStructure";
 import { sidebar } from "./Data/sidebar";
 import Queue from "./Pages/Queue";
 import Notfound from "./Pages/Notfound";

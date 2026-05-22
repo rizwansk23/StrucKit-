@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { Activity, useState } from "react";
 import type { datavalue } from "../../Data/sidebar";
 import { ChevronRight, } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
+interface DatastructureProps {
+    item: datavalue;
+    activeItem: string;
+    setActiveItem: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export const Datastructure: React.FC<{ item: datavalue }> = ({ item }) => {
+
+export const SideList: React.FC<DatastructureProps> = ({ item, activeItem, setActiveItem }) => {
 
     const [isopen, setisopen] = useState<boolean>(false);
 
@@ -13,15 +19,23 @@ export const Datastructure: React.FC<{ item: datavalue }> = ({ item }) => {
 
     const Url = item.topic.replaceAll(' ', '')
 
-    return (
 
+    const handlelist = () => {
+        setisopen(!isopen);
+
+        if (setActiveItem) {
+            setActiveItem(item.topic as string);
+        }
+    }
+
+    return (
         <li className="list-disc text-text my-2">
             {!hasChildren
                 ?
-                <Link to={`${Url}`}>
+                <Link to={`/${Url}`}>
                     <div
-                        onClick={() => setisopen(!isopen)}
-                        className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5  ${hasChildren ? 'cursor-pointer border border-border rounded-xl  ' : 'cursor-default'}`}>
+                        onClick={handlelist}
+                        className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5 rounded-xl ${activeItem === item.topic && 'bg-tile-color'} ${hasChildren ? 'cursor-pointer border border-border  ' : 'cursor-default'}`}>
                         {item.icon ?
                             <div className="border border-border rounded-lg p-1 text-green-800 bg-green-100">
                                 {<item.icon className="size-6" />}
@@ -36,7 +50,7 @@ export const Datastructure: React.FC<{ item: datavalue }> = ({ item }) => {
                 </Link>
                 :
                 <div
-                    onClick={() => setisopen(!isopen)}
+                    onClick={handlelist}
                     className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5  ${hasChildren ? 'cursor-pointer border border-border rounded-xl  ' : 'cursor-default'}`}>
                     {item.icon ?
                         <div className="border border-border rounded-lg p-1 text-green-800 bg-green-100">
@@ -50,14 +64,17 @@ export const Datastructure: React.FC<{ item: datavalue }> = ({ item }) => {
                     {hasChildren ? <ChevronRight size={24} className={`${isopen ? 'rotate-90' : 'rotate-0 '} transition-all ease-in-out duration-200 `} /> : null}
                 </div>
             }
-            {hasChildren && isopen && (
-                <ul className={`${item.topic == 'Data Structure' ? null : ` border-border ml-5 pl-6 `}`}>
-                    {
-                        item.subtopic?.map((child: any, index: number) => (
-                            <Datastructure item={child} key={index} />
-                        ))
-                    }
-                </ul>
+            {hasChildren && (
+                <Activity mode={isopen ? 'visible' : 'hidden'}>
+                    <ul className={`${item.topic == 'Data Structure' ? null : ` border-border ml-5 pl-6 `}`}>
+                        {
+                            item.subtopic?.map((child: any, index: number) => (
+                                <SideList item={child} activeItem={activeItem}
+                                    setActiveItem={setActiveItem} key={index} />
+                            ))
+                        }
+                    </ul>
+                </Activity>
             )}
         </li>
     )

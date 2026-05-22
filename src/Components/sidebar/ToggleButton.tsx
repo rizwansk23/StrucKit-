@@ -21,10 +21,10 @@ const ToggleButton: React.FC<togglefunction> = ({ onchange ,isDarkmode, classNam
   return (
     <div
       onClick={handleclick}
-      className={`h-7 w-12 bg-dark-green dark:bg-[#F5F5F5]  p-2  rounded-full relative ${className}`}
+      className={`h-7 w-12 bg-dark-green dark:bg-[#F5F5F5]  rounded-full cursor-pointer relative ${className}`}
     >
       <div
-        className={`size-3 bg-orange rounded-full transition-all ease-in-out duration-500 absolute top-2 left-2 ${isactive
+        className={`size-4 bg-orange rounded-full transition-all ease-in-out duration-500 absolute top-1.5 ${isactive
           ? 'left-full -translate-x-[calc(100%+8px)]'
           : 'left-2 translate-x-0'
           }`}

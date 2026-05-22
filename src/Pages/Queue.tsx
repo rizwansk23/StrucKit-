@@ -1,18 +1,12 @@
-import { useLocation } from "react-router-dom"
-import NavFuction from "../Components/Routes/NavFuction"
-
+import { GetPath } from "../hook/GetPaths"
 
 const Queue = () => {
 
-    const location = useLocation();
-
-     const paths : String[] = location.pathname.split('/').filter(Boolean);
-
-     const path =  paths.slice(0, 1);
+    const path = GetPath();
 
     return (
         <div>
-            {/* <NavFuction/> */}
+
             {path} visual page
 
         </div>

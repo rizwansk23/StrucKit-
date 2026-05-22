@@ -5,14 +5,15 @@
   --color-brand-bg: #ffffff;
   --color-primary: #f5f5f5;
   --color-secondry: #ffffff;
-
   --color-dark-green: #1a4645;
   --color-light-green: #266867;
   --color-orange: #f58800;
   --color-yellow: #f8bc27;
-  --color-border: #0D1117;
+  /* --color-border: #0D1117; */
+  --color-border: #E5E4E2;
   --color-text: #0D1117;
   --color-tile-shadow: #e5e4e2;
+  --color-tile-color : #C0C0C0;
 }
 
 @layer theme {
@@ -29,6 +30,7 @@
      --color-border: #494B4C;
       --color-text: #ffffff;
       --color-tile-shadow: #364153;
+      --color-tile-color:   #283549;
     }
   }
 }
