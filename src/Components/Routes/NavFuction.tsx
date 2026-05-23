@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon, LineDotRightHorizontalIcon, Slash } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const NavFunction = () => {
@@ -22,13 +22,14 @@ const NavFunction = () => {
             onClick={() => handleNavigate(index)}
             className={`
               cursor-pointer hover:text-yellow transition-colors
-              ${index === paths.length - 1 ? 'font-semibold text-text' : 'text-gray-400'}
+              ${index === paths.length - 1 ? 'font-semibold text-gray-500 dark:text-gray-300' : 'text-gray-400'}
             `}
           >
             {segment.charAt(0).toUpperCase() + segment.slice(1)}
           </span>
           {index < paths.length - 1 && (
             <ChevronRightIcon size={16} className="mx-1 text-text" />
+            // <Slash size={12} className="mx-1 text-text rotate-160 " />
           )}
         </span>
       ))}

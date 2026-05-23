@@ -11,9 +11,9 @@ const ToggleButton: React.FC<togglefunction> = ({ onchange ,isDarkmode, classNam
   const [isactive, setisActive] = useState<boolean>(isDarkmode)
 
   const handleclick = () => {
-    const nextstage = !isactive;
-    setisActive(nextstage);
-    onchange(nextstage);
+    const nextstate = !isactive;
+    setisActive(nextstate);
+    onchange(nextstate);
 
   }
 

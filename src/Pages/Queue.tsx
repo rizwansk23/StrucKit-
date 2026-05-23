@@ -5,7 +5,7 @@ const Queue = () => {
     const path = GetPath();
 
     return (
-        <div>
+        <div className="bg-tertiary h-60 w-full">
 
             {path} visual page
 

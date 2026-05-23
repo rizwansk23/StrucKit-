@@ -14,13 +14,13 @@ const Sidebar = () => {
 
 
     return (
-        <aside className={`w-1/4 h-full bg-secondry  border-border border-r flex flex-col py-2}`}>
+        <aside className={`w-1/3 h-screen sticky top-0 self-start bg-secondry  border-border border-r flex flex-col py-2}`}>
             {/* header */}
             <header className="flex items-center gap-4 px-2 text-text">
                 <div className="border border-border bg-orange p-1 text-white rounded-lg" >
                     <LucideMenuSquare size={24} className="size-6" />
                 </div>
-                <h1 className=" text-text text-2xl my-4 font-bold">Data Structure  </h1>
+                <h1 className=" text-text text-2xl my-4 font-bold">StrucKit  </h1>
 
             </header>
             <hr className="text-border " />

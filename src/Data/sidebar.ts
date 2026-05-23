@@ -1,59 +1,86 @@
 import type { IconType } from "@react-icons/all-files";
-import { FaStackOverflow } from "@react-icons/all-files/fa/FaStackOverflow";
-import { SiDatacamp } from "@react-icons/all-files/si/SiDatacamp";
+import {
+  Columns3,
+  GitFork,
+  Layers,
+  LineDotRightHorizontalIcon,
+  Waypoints,
+  type LucideIcon,
+} from "lucide-react";
 
 export interface datavalue {
   topic: String;
-  icon?: IconType;
+  icon?: IconType | LucideIcon;
   subtopic?: datavalue[];
 }
 
 export const sidebar = {
   topic: "Data Structure",
-  icon: SiDatacamp,
   subtopic: [
     {
       topic: "Stack",
-      icon: FaStackOverflow,
+      icon: Layers,
     },
     {
-      icon: FaStackOverflow,
       topic: "Queue",
+      icon: Columns3,
     },
     {
       topic: "Linked List",
-      icon: FaStackOverflow,
-
+      icon: LineDotRightHorizontalIcon,
       subtopic: [
         {
           topic: "Single Linked List",
-        //   icon: FaStackOverflow,
         },
         {
           topic: "Double Linked List",
-        //   icon: FaStackOverflow,
         },
         {
           topic: "Circular Linked List",
-        //   icon: FaStackOverflow,
         },
       ],
     },
-    // {
-    //   topic: "Binary Tree",
-    //   subtopic: [
-    //     {
-    //       topic: "complete B tree",
-    //     },
-    //   ],
-    // },
-    // {
-    //   topic: "Binary Tree",
-    //   subtopic: [
-    //     {
-    //       topic: "complete B tree",
-    //     },
-    //   ],
-    // },
+    {
+      topic: "Binary Tree",
+      icon: GitFork,
+      subtopic: [
+        {
+          topic: "Full Binary tree",
+        },
+        {
+          topic: "Perfect Binary tree",
+        },
+        {
+          topic: "Complete Binary tree",
+        },
+        {
+          topic: "Degenerate Binary tree",
+        },
+        {
+          topic: "Traverse",
+        },
+      ],
+    },
+    {
+      topic: "Graphs",
+      icon: Waypoints,
+      subtopic: [
+        {
+          topic: "Graph",
+        },
+        {
+          topic: "Prim's Algorithm",
+        },
+        {
+          topic: "Kruskal's Algorithm",
+        },
+        {
+          topic: "BFS",
+        },
+        {
+          topic: "DFS",
+        },
+      ],
+    },
   ],
 };

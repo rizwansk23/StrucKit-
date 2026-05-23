@@ -5,15 +5,18 @@
   --color-brand-bg: #ffffff;
   --color-primary: #f5f5f5;
   --color-secondry: #ffffff;
+  --color-tertiary  :#e5e4e2;
   --color-dark-green: #1a4645;
   --color-light-green: #266867;
   --color-orange: #f58800;
   --color-yellow: #f8bc27;
-  /* --color-border: #0D1117; */
-  --color-border: #E5E4E2;
-  --color-text: #0D1117;
+  --color-border: #e5e4e2;
+  --color-text: #0d1117;
+  --color-heading: #99a1af; /* gray-400 */
+  --color-p: #6a7282; /* gray-500 */
+  --color-description: #4a5565; /*gray-300*/
   --color-tile-shadow: #e5e4e2;
-  --color-tile-color : #C0C0C0;
+  --color-tile-color: #c0c0c0;
 }
 
 @layer theme {
@@ -22,37 +25,46 @@
       --color-brand-bg: #0f172a;
       --color-primary: #0d1117;
       --color-secondry: #0a0e14;
+        --color-tertiary  :#0f1620e0;
       --color-dark-green: #1a4645;
       --color-light-green: #266867;
       --color-orange: #f58800;
       --color-yellow: #f8bc27;
-      /* --color-border: #f5f5f5;   */
-     --color-border: #494B4C;
+      /* --color-border: #494b4c; */
+      --color-border: #1e2939; /* gray-800*/
       --color-text: #ffffff;
+      --color-heading: #99a1af; /* gray-400 */
+      --color-p: #6a7282; /* gray-500 */
+      --color-description: #d1d5dc; /*gray -6--*/
       --color-tile-shadow: #364153;
-      --color-tile-color:   #283549;
+      /* --color-tile-color:#0F1620; */
+      --color-tile-color: #283549;
     }
   }
 }
 
 /* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
 
 /* Track */
-.custom-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--color-primary);
   border-radius: 10px;
 }
 
 /* Handle */
-.custom-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #555;
   border-radius: 10px;
 }
 
 /* Hover */
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
