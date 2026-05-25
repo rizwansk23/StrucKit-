@@ -1,4 +1,4 @@
-import { ChevronRightIcon, LineDotRightHorizontalIcon, Slash } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const NavFunction = () => {

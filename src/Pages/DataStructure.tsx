@@ -1,7 +1,7 @@
 import React from 'react'
 import type { dataType } from '../Components/DataStructure/Navbar'
 import { Link } from 'react-router-dom'
-import Stack from '../Components/DataStructure/Visuals/Stack'
+import Stack from '../Components/DataStructure/VisualsBox/Stack'
 
 
 
@@ -18,7 +18,7 @@ const   DataStructure: React.FC<dataType> = ({ data }) => {
             <section className=' my-5'>
                 <h1 className='text-sm text-heading uppercase'>visual</h1>
                 <Link to={'./visual'}>
-                    <div className='border dark:border-tile-shadow border-tile-color  w-full h-80 my-4 rounded-2xl bg-tile-shadow dark:bg-tertiary '>
+                    <div className='border border-tile-color  w-full h-80 my-4 rounded-2xl bg-tile-shadow dark:bg-tertiary '>
                         <Stack/>
                     </div>
                 </Link>

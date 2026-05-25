@@ -37,8 +37,8 @@ export const SideList: React.FC<DatastructureProps> = ({ item, activeItem, setAc
                         onClick={handlelist}
                         className={`flex gap-4 items-center justify-between hover:bg-tile-shadow text-text hover:rounded-xl text-md p-2.5 rounded-xl ${activeItem === item.topic && 'bg-tile-color'} ${hasChildren ? 'cursor-pointer border border-border  ' : 'cursor-default'}`}>
                         {item.icon ?
-                            <div className="border border-border rounded-lg p-1 text-yellow bg-[#ffd00037] ">
-                                {<item.icon  className="size-6" />}
+                            <div className={`border border-border rounded-lg p-1 text-yellow bg-[#ffd00037]`}>
+                                {<item.icon  className='size-6' />}
                             </div>
                             : null
                         }
@@ -66,7 +66,7 @@ export const SideList: React.FC<DatastructureProps> = ({ item, activeItem, setAc
             }
             {hasChildren && (
                 <Activity mode={isopen ? 'visible' : 'hidden'}>
-                    <ul className={`${item.topic == 'Data Structure' ? null : ` border-border ml-5 pl-6 `}`}>
+                    <ul className={`${item.topic != 'Data Structure' && ` border-border ml-5 pl-6 `}`}>
                         {
                             item.subtopic?.map((child: any, index: number) => (
                                 <SideList item={child} activeItem={activeItem}

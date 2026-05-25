@@ -26,6 +26,7 @@
       --color-primary: #0d1117;
       --color-secondry: #0a0e14;
         --color-tertiary  :#0f1620e0;
+        /* --color-tertiary : #0c121a; */
       --color-dark-green: #1a4645;
       --color-light-green: #266867;
       --color-orange: #f58800;
@@ -68,3 +69,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
+

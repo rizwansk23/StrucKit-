@@ -7,7 +7,9 @@ const AppLayout = () => {
     <div className="bg-primary h-fit flex text-text relative ">
       <Sidebar />
       <div className="w-full">
-        <div className="px-5 pt-4"><NavFunction /></div>
+        <div className="px-5 pt-4">
+          <NavFunction />
+        </div>
         <Outlet />
       </div>
     </div>
