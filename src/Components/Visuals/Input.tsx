@@ -4,9 +4,11 @@ const Input: React.FC<{
     values: number;
     onNext?: () => void;
     onPrev?: () => void;
+    onEnter?: () => void,
     onChange?: (value: number | undefined) => void;
     inputRef?: (el: HTMLInputElement | null) => void;
-}> = ({ values, onNext, onPrev, onChange, inputRef }) => {
+}> = ({ values, onNext, onPrev, onEnter, onChange, inputRef }) => {
+    
     const [value, setValue] = useState<number | undefined>(values);
     const ref = inputRef;
 
@@ -38,12 +40,9 @@ const Input: React.FC<{
         // onChange?.(Number(newValue) )
     };
     const handleNext = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "ArrowRight" && onNext) {
-            onNext();
-        }
-        if (event.key === "ArrowLeft" && onPrev) {
-            onPrev();
-        }
+        if (event.key === "ArrowRight" && onNext) onNext();
+        if (event.key === "ArrowLeft" && onPrev) onPrev();
+        if (event.key === 'Enter' && onEnter) onEnter()
     };
 
     return (

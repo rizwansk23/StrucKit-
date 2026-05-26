@@ -3,14 +3,17 @@ import React, { useEffect, useRef, useState } from "react";
 import Input from "./Input";
 
 const Modal: React.FC<{ data: number[] }> = ({ data }) => {
+
     const [isopen, setisopen] = useState(false);
     const [editedData, setEditedData] = useState<(number | undefined)[]>([...data]);
+
 
     useEffect(() => {
         if (data.length > 0) {
             setEditedData([...data]);
         }
     }, [data]);
+    
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
     const handleNext = (currentIndex: number) => {
@@ -41,8 +44,15 @@ const Modal: React.FC<{ data: number[] }> = ({ data }) => {
 
     const handleKeySubmit = (event:React.KeyboardEvent)=>{
         if(event.key === 'Enter'){
-            handleSubmit()
+            // handleSubmit()
+        setisopen(!open)
+
         }
+    }
+
+    const handleKey = (index : number)=>{
+            inputRefs.current[index ]?.blur();
+            handleSubmit()
     }
 
     return (
@@ -74,6 +84,7 @@ const Modal: React.FC<{ data: number[] }> = ({ data }) => {
                                     values={i}
                                     onNext={() => handleNext(ind)}
                                     onPrev={() => handlePrev(ind)}
+                                    onEnter={()=> handleKey(ind)}
                                     onChange={(newval) => {
                                         handleValueChange(ind, newval);
                                     }}

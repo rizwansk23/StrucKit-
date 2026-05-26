@@ -1,14 +1,17 @@
-import { Minus, Plus, RotateCw, TextAlignCenter } from "lucide-react";
+import { Minus, Plus, Shrink } from "lucide-react";
+import { MdCenterFocusWeak } from '@react-icons/all-files/md/MdCenterFocusWeak'
 import { useState } from "react";
 import { TransformComponent, TransformWrapper, useControls } from "react-zoom-pan-pinch";
 
 const Main: React.FC<{ data: number[] }> = ({ data }) => {
 
     const [zoom, setZoom] = useState(100);
+    const [isDragging, setIsDragging] = useState(false);
+
 
 
     return (
-        <main className="w-full text-text flex-1 relative cursor-grabbing z-99">
+        <main className={`w-full text-text flex-1 relative  z-99 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
 
 
             <TransformWrapper
@@ -28,6 +31,13 @@ const Main: React.FC<{ data: number[] }> = ({ data }) => {
                 onZoom={(ref) => {
                     setZoom(Math.round(ref.state.scale * 100));
                 }}
+                doubleClick={{
+                    mode: 'zoomIn',
+                    step: 0.4,
+                    animationType: 'easeInOutCubic'
+                }}
+                onPanningStart={() => setIsDragging(true)}
+                onPanningStop={() => setIsDragging(false)}
 
             >
                 <Controls zoom={zoom} />
@@ -35,14 +45,15 @@ const Main: React.FC<{ data: number[] }> = ({ data }) => {
                     wrapperStyle={{
                         width: "100%",
                         height: "100%",
-                        // // backgroundColor: "#0c121a",
+                        // backgroundColor: "#0c121a",
                         backgroundImage:
                             "radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px)",
                         backgroundSize: "20px 20px",
                         //     color:'#ffff'
                     }}
                 >
-                    <div className="flex gap-2">
+
+                    <div className="flex gap-2 ">
                         {data.map((num, index) => (
                             <div key={index} className="bg-red-100 w-18 h-16 text-center rounded-2xl text-black p-5">
                                 {num}
@@ -61,6 +72,11 @@ export default Main;
 const Controls: React.FC<{ zoom: number }> = ({ zoom }) => {
     const { zoomIn, zoomOut, resetTransform, centerView } = useControls();
 
+    window.addEventListener('keydown', (e) => {
+        if(e.ctrlKey && e.key === 'y') resetTransform();
+        // e.key == 'Ctrl + c' && centerView();
+    })
+
     return (
         <div className="flex gap-4 z-80 absolute right-3 top-2 bg-primary text-text w-fit  p-3 rounded-2xl cursor-default">
             <button
@@ -76,12 +92,13 @@ const Controls: React.FC<{ zoom: number }> = ({ zoom }) => {
             <button
                 className="cursor-pointer active:scale-90"
                 onClick={() => resetTransform()}>
-                <RotateCw size={18} />
+                <Shrink size={18} />
             </button>
             <button
                 className="cursor-pointer active:scale-90"
                 onClick={() => centerView()}>
-                <TextAlignCenter size={18} />
+                <MdCenterFocusWeak size={18} />
+                {/* <TextAlignCenter size={18} /> */}
             </button>
             <div className="bg-orange text-text px-2 py-1 rounded">
                 {zoom}%
