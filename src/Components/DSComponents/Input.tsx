@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Input: React.FC<{
     values: number;
@@ -8,9 +8,13 @@ const Input: React.FC<{
     onChange?: (value: number | undefined) => void;
     inputRef?: (el: HTMLInputElement | null) => void;
 }> = ({ values, onNext, onPrev, onEnter, onChange, inputRef }) => {
-    
+
     const [value, setValue] = useState<number | undefined>(values);
     const ref = inputRef;
+
+    useEffect(() => {
+        setValue(values)
+    }, [values])
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,15 +33,14 @@ const Input: React.FC<{
             setValue(numValue);
             onChange?.(numValue);
 
+
             // Agar 2 digits complete ho gaye toh next box pe focus karo
             if (newValue.length == 2 && onNext) {
                 onNext();
             }
         } else {
             setValue(undefined);
-            onChange?.(undefined)
         }
-        // onChange?.(Number(newValue) )
     };
     const handleNext = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "ArrowRight" && onNext) onNext();
