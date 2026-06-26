@@ -9,8 +9,9 @@ const Modal: React.FC<{
 }> = ({ data, setData }) => {
   const [isopen, setisopen] = useState(false);
   const [editedData, setEditedData] = useState<number[]>([...data]);
-  const [Arraylength, setArraylength] = useState<number | undefined>(data.length);
-
+  const [Arraylength, setArraylength] = useState<number | undefined>(
+    data.length,
+  );
 
   useEffect(() => {
     if (data.length > 0) {
@@ -68,6 +69,7 @@ const Modal: React.FC<{
   return (
     <div>
       <button
+      title="Edit"
         className="align-top cursor-pointer"
         onClick={() => {
           setisopen(!isopen);
@@ -94,16 +96,15 @@ const Modal: React.FC<{
                 Getnerate random
                 <input
                   type="text"
-                  max={15}
+                  max={10}
                   min={1}
                   value={Arraylength}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const value = Number(e.target.value);
-                    if (value >= 0 && value <= 15) {
+                    if (value >= 0 && value <= 10) {
                       setArraylength(value);
                       handleRandomData(value);
                     }
-
                   }}
                 />
               </button>

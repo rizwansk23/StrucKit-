@@ -1,8 +1,12 @@
+import { type ComponentType} from "react";
+import Stack, { type StackProp } from "../Components/DataStructure/Visuals/Stack";
+
 export interface dataProp {
   topic: string;
   type: string[];
   description: string;
-  visual: string;
+  visual: ComponentType<StackProp> | string;
+  operation?:string[];
   complexity: {
     insert: ComplexityProp;
     delete: ComplexityProp;
@@ -23,7 +27,8 @@ export const dataStructures: Record<string, dataProp> = {
     type: ["LIFO", "Linear"],
     description:
       "Stack follows LIFO (Last In, First Out) principle. Elements are added (pushed) and removed (popped) from the same end called the top.",
-    visual: "",
+    visual: Stack,
+    operation: ['Push','Pop','Peek',"Search"],
     complexity: {
       insert: {
         name: "push",

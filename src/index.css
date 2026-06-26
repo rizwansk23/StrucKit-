@@ -70,3 +70,13 @@
   background: #888;
 }
 
+option{
+  background-color: var(--color-secondry);
+  border: var(--color-border);
+}
+
+option:hover{
+  background-color:var(--color-yellow);
+  cursor: pointer;
+  
+}

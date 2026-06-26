@@ -1,4 +1,4 @@
-export const GetRandom = ( number :number = 10):number[] => {
+export const GetRandom = ( number :number = 5):number[] => {
   let num: number[] = [];
 
   for (let i = 1; i <= number; i++) {

@@ -25,7 +25,7 @@ const NavFunction = () => {
               ${index === paths.length - 1 ? 'font-semibold text-gray-500 dark:text-gray-300' : 'text-gray-400'}
             `}
           >
-            {segment.charAt(0).toUpperCase() + segment.slice(1)}
+            <kbd>{segment.charAt(0).toUpperCase() + segment.slice(1)}</kbd>
           </span>
           {index < paths.length - 1 && (
             <ChevronRightIcon size={16} className="mx-1 text-text" />

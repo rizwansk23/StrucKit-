@@ -16,8 +16,8 @@ const DsVisualLayout = () => {
     const storedata = localStorage.getItem('data')
     const StoreData: number[] = storedata ? JSON.parse(storedata) : null;
 
-
     const [numbers, setNumbers] = useState<number[]>([]);
+    const [selected, setSelected] = useState<string>("");
 
     useEffect(() => {
 
@@ -39,8 +39,8 @@ const DsVisualLayout = () => {
             {url.includes(path) ? (
                 <div className="dark:bg-[#0c121a]  bg-tertiary w-full h-screen flex flex-col justify-center items-center">
                     <Navbar name={path} />
-                    <Main data={numbers} />
-                    <Footer data={numbers} setData={setNumbers} />
+                    <Main name={path} data={numbers} selected = {selected} />
+                    <Footer name={path} data={numbers} setData={setNumbers} setSelected={setSelected} />
                 </div>
             )
                 : <Notfound />}

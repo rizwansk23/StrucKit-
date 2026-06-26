@@ -28,7 +28,7 @@ const   DataStructure: React.FC<dataType> = ({ data }) => {
                 <div className='grid grid-cols-2 gap-5 my-4'>
                     {complexity.map((data, index) => (
                         <div
-                            className='dark:border-tile-shadow border-tile-color  border rounded-2xl py-3 px-7 hover:scale-105 hover:border-[#A4DDED]'
+                            className='dark:border-tile-shadow border-tile-color  border rounded-2xl py-3 px-7 hover:scale-105 hover:border-[#ffb545]'
                             key={index}>
                             <h1 className='text-text text-xl font-medium capitalize'>{data.name}</h1>
                             <h1 className='text-orange text-xl font-medium '> {data.time_complexity}</h1>
