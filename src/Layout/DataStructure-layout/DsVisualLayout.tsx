@@ -8,6 +8,11 @@ import { GetPath } from "../../hook/GetPaths"
 import Notfound from "../../Pages/Notfound";
 import { GetRandom } from "../../hook/GetRandom";
 
+export interface isSelectedProp {
+    type: string;
+    id: number
+}
+
 const DsVisualLayout = () => {
 
     const path = GetPath();
@@ -17,7 +22,7 @@ const DsVisualLayout = () => {
     const StoreData: number[] = storedata ? JSON.parse(storedata) : null;
 
     const [numbers, setNumbers] = useState<number[]>([]);
-    const [selected, setSelected] = useState<string>("");
+    const [selected, setSelected] = useState<isSelectedProp>({ type: '', id: Date.now() });
 
     useEffect(() => {
 
@@ -39,7 +44,7 @@ const DsVisualLayout = () => {
             {url.includes(path) ? (
                 <div className="dark:bg-[#0c121a]  bg-tertiary w-full h-screen flex flex-col justify-center items-center">
                     <Navbar name={path} />
-                    <Main name={path} data={numbers} selected = {selected} />
+                    <Main name={path} data={numbers} selected={selected} />
                     <Footer name={path} data={numbers} setData={setNumbers} setSelected={setSelected} />
                 </div>
             )

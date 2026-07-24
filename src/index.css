@@ -5,7 +5,7 @@
   --color-brand-bg: #ffffff;
   --color-primary: #f5f5f5;
   --color-secondry: #ffffff;
-  --color-tertiary  :#e5e4e2;
+  --color-tertiary: #e5e4e2;
   --color-dark-green: #1a4645;
   --color-light-green: #266867;
   --color-orange: #f58800;
@@ -25,8 +25,8 @@
       --color-brand-bg: #0f172a;
       --color-primary: #0d1117;
       --color-secondry: #0a0e14;
-        --color-tertiary  :#0f1620e0;
-        /* --color-tertiary : #0c121a; */
+      --color-tertiary: #0f1620e0;
+      /* --color-tertiary : #0c121a; */
       --color-dark-green: #1a4645;
       --color-light-green: #266867;
       --color-orange: #f58800;
@@ -70,13 +70,12 @@
   background: #888;
 }
 
-option{
+option {
   background-color: var(--color-secondry);
   border: var(--color-border);
 }
 
-option:hover{
-  background-color:var(--color-yellow);
+option:hover {
+  background-color: var(--color-yellow);
   cursor: pointer;
-  
 }

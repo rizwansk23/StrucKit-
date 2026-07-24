@@ -6,11 +6,11 @@ import {
     TransformWrapper,
     useControls,
 } from "react-zoom-pan-pinch";
-import Stack from "../DataStructure/Visuals/Stack";
 import { ThemeContext } from "../../Theme/ThemeContext";
 import { dataStructures } from "../../Data/DataStructure";
+import type { isSelectedProp } from "../../Layout/DataStructure-layout/DsVisualLayout";
 
-const Main: React.FC<{ name: string, data: number[] , selected : string }> = ({ name, data , selected }) => {
+const Main: React.FC<{ name: string, data: number[] , selected ?: isSelectedProp}> = ({ name, data , selected }) => {
 
 
     const operations = dataStructures[name]
@@ -71,7 +71,7 @@ const Main: React.FC<{ name: string, data: number[] , selected : string }> = ({ 
                 >
                     {/* // animated component goes here */}
 
-                    <operations.visual data = {data} operation = {selected}/>
+                    <operations.visual data = {data} operation = {selected!}/>
 
                 </TransformComponent>
             </TransformWrapper>

@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
 import { dataStructures } from "../../Data/DataStructure";
+import type { isSelectedProp } from "../../Layout/DataStructure-layout/DsVisualLayout";
+import Dropdown from "./Dropdown";
 import Modal from "./Modal";
 
 const Footer: React.FC<{
     name: string;
     data: number[];
     setData: React.Dispatch<React.SetStateAction<number[]>>;
-     setSelected: React.Dispatch<React.SetStateAction<string>>
-}> = ({ name, data, setData , setSelected }) => {
+    setSelected: React.Dispatch<React.SetStateAction<isSelectedProp>>
+}> = ({ name, data, setData, setSelected }) => {
 
-    
+
     const Datas = dataStructures[name].operation;
 
-    
+
 
     return (
         <footer className="w-full z-999 text-description dark:bg-secondry bg-primary h-20 border flex justify-between items-center  self-end border-border px-5">
@@ -33,9 +34,10 @@ const Footer: React.FC<{
                 </span>
 
                 <div className="">
-                    <select
+                    {/* <select
                         onChange={(e) => {
-                            setSelected(e.target.value);
+                            setSelected({ type: e.target.value, id: Date.now() });
+                            console.log('operation change')
                         }}
                         className="bg-secondry border hover:border-orange  focus:border-orange-400 focus:ring-2 focus:ring-blue-500/20  border-border px-5 py-1 rounded-lg cursor-pointer"
                     >
@@ -44,7 +46,8 @@ const Footer: React.FC<{
                                 {data}
                             </option>
                         ))}
-                    </select>
+                    </select> */}
+                    <Dropdown data={Datas} setSelected={setSelected} />
                 </div>
             </div>
             <div></div>

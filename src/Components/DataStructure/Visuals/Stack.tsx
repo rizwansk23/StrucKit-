@@ -1,52 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
-import type { dataProp } from "../../../Data/DataStructure";
+// import type { dataProp } from "../../../Data/DataStructure";
+import type { isSelectedProp } from "../../../Layout/DataStructure-layout/DsVisualLayout";
 
-type OperationDataProp = Pick<dataProp, "operation">;
+// type OperationDataProp = Pick<dataProp, "operation">;
 
 export interface StackProp {
     data: number[];
-    operation: OperationDataProp | string;
+    operation: isSelectedProp;
 }
 
 const Stack: React.FC<StackProp> = ({ data, operation }) => {
     const [array, setArray] = useState<number[]>(data);
+    const [popArray, setPopArray] = useState<number[]>([]);
+    const [Scope, animate] = useAnimate();
 
     useEffect(() => {
         setArray(JSON.parse(JSON.stringify(data)));
     }, [data]);
-
-    // let array : number[] = [...data];
-    const [Scope, animate] = useAnimate();
-
-    // const animation = async () => {
-    //     await animate(
-    //         "span",
-    //         {
-    //             y: [-80, 0],
-    //             opacity: [0, 1],
-    //             scale: [0.8, 1],
-    //         },
-    //         {
-    //             duration: 0.5,
-    //             delay: stagger(0.28),
-    //             ease: "easeInOut",
-    //         },
-    //     );
-
-    //     animate(
-    //         "span:last-child",
-    //         {
-    //             scale: [1, 1.07, 1],
-    //         },
-    //         {
-    //             duration: 1.2,
-    //             repeat: Infinity,
-    //             repeatDelay: 1,
-    //             ease: "easeInOut",
-    //         },
-    //     );
-    // };
 
     const SearchFunc = async () => {
         await animate(
@@ -57,60 +28,61 @@ const Stack: React.FC<StackProp> = ({ data, operation }) => {
             },
             {
                 delay: stagger(1),
-                // ease: "easeInOut"
             },
         );
         animate("span", {
-            // scale:[1,1.2,1.5,1.2,1,0.8,1],
             backgroundColor: "var(--color-orange)",
         });
         animate("span:last-child", {
-            // scale:[1,1.2,1.5,1.2,1,0.8,1],
             backgroundColor: "var(--color-light-green)",
         });
     };
 
-    const [popValue, setPopValue] = useState<number | null>(null);
+    const PopFunc = async () => {
+        const value = array[array.length - 1];
 
-    const [popArray, setPopArray] = useState<number[]>([]);
+        await animate(
+            "span:last-child",
+            {
+                y: [0, -80],
+                opacity: [1, 0],
+            },
+            {
+                duration: 0.3,
+                ease: "easeInOut",
+                delay: 0.3,
+            },
+        );
+        setPopArray((prev) => [...prev, value]);
+
+        setArray((prev) => prev.slice(0, -1));
+    };
+
+    const PushFunc = async () => {
+        setPopArray((prev) => prev.slice(0, -1));
+
+        setArray((prev) => [...prev, popArray[popArray.length - 1]]);
+
+        await animate("span:last-child", {
+            y: [-40, 0],
+            scale: [1, 1.15, 1],
+        });
+    };
 
     useEffect(() => {
-        switch (operation) {
+        console.log(operation);
+        switch (operation.type) {
             case "Push":
-                
-                setPopArray((prev) => prev.slice(0, -1));
                 if (popArray.length === 0) break;
 
-                setArray((prev) => [...prev, popArray[popArray.length - 1]]);
-
-                animate("span:last-child", {
-                    y: [-40, 0],
-                    scale: [1, 1.15, 1],
-                });
+                PushFunc();
 
                 break;
 
             case "Pop":
                 if (array.length === 0) break;
 
-                setPopValue(array[array.length - 1]);
-
-                setPopArray((prev) => [...prev, popValue as number]);
-
-                setArray((prev) => prev.slice(0, -1));
-
-                animate(
-                    "span:last-child",
-                    {
-                        y: [0, -80],
-                        opacity: [1, 0],
-                    },
-                    {
-                        duration: 1,
-                        ease: "easeInOut",
-                        delay: 1,
-                    },
-                );
+                PopFunc();
                 break;
 
             case "Peek":
@@ -121,18 +93,29 @@ const Stack: React.FC<StackProp> = ({ data, operation }) => {
             case "Search":
                 SearchFunc();
                 break;
+            default:
+                animate("span:last-child", {
+                    backgroundColor: "var(--color-light-green)",
+                });
+                if (array.length === 1) {
+                    animate("span", {
+                        backgroundColor: "var(--color-light-green)",
+                    });
+                }
         }
-    }, [operation]);
+    }, [operation.id]);
+
 
     return (
         <div
             ref={Scope}
-            className="flex w-fit h-fit items-center border-t-0 border p-5 gap-4 flex-col-reverse justify-center"
+            className="flex w-fit h-fit items-center border-t-0 border-2  rounded-b-2xl px-5 py-3 gap-4 flex-col-reverse justify-center"
         >
             {array.map((num, index) => {
                 const isTop = index === array.length - 1;
                 return (
                     <motion.span
+                        title={JSON.stringify(array[index])}
                         key={index}
                         initial={{
                             y: -80,
