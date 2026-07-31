@@ -17,17 +17,17 @@ const Footer: React.FC<{
 
     return (
         <footer className="w-full z-999 text-description dark:bg-secondry bg-primary h-20 border flex justify-between items-center  self-end border-border px-5">
-            <div className="text-xl w-full flex  items-center cursor-default  ">
-                <h3>Array : </h3>
+            <div className="text-lg w-full flex  items-center cursor-default gap-2 ">
+                <kbd className="text-p">Array </kbd>
                 <span className="overflow-auto  flex justify-baseline items-center">
-                    {data.map((i, ind) => (
-                        <span key={ind} className="p-1 m-1 hover:text-yellow  text-xl">
-                            {ind == 0 && "[ "}
+                    [
+                    {data.map((i, number) => (
+                        <span key={number} title={'Index = '+number.toString()} className={`p-1 m-1  text-lg ${number == data.length -1 && 'text-orange'}`}>
                             {i}
-                            {ind != data.length - 1 && ","}
-                            {ind == data.length - 1 && " ]"}
+                            {number != data.length - 1 && ","}
                         </span>
                     ))}
+                    ]
                 </span>
                 <span className="flex-1">
                     <Modal data={data} setData={setData} />

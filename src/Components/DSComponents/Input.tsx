@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Input: React.FC<{
@@ -49,17 +50,20 @@ const Input: React.FC<{
     };
 
     return (
-        <input
+        <span className="flex justify-between items-center gap-3 bg-tertiary rounded-2xl px-3">
+            <input
             ref={ref}
             type="tel"
             maxLength={2}
             pattern="[0-9]{1,2}"
             inputMode="numeric"
-            className="w-12 h-12 text-center text-xl  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full h-12 rounded-md focus:outline-none pl-3 focus:ring-blue-500"
             value={value}
             onChange={handleChange}
             onKeyDown={(e) => handleNext(e)}
         />
+        <span className="hover:text-red-400 cursor-pointer active:scale-90"><X size={20}/></span>
+        </span>
     );
 };
 

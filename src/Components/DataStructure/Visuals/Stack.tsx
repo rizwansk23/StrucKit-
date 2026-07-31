@@ -66,6 +66,7 @@ const Stack: React.FC<StackProp> = ({ data, operation }) => {
         await animate("span:last-child", {
             y: [-40, 0],
             scale: [1, 1.15, 1],
+            backgroundColor: "var(--color-orange)",
         });
     };
 
@@ -109,7 +110,7 @@ const Stack: React.FC<StackProp> = ({ data, operation }) => {
     return (
         <div
             ref={Scope}
-            className="flex w-fit h-fit items-center border-t-0 border-2  rounded-b-2xl px-5 py-3 gap-4 flex-col-reverse justify-center"
+            className="flex w-fit h-fit items-center border-t-0 border-b-0 border  rounded-b-2xl px-5 py-3 gap-4 flex-col-reverse justify-center"
         >
             {array.map((num, index) => {
                 const isTop = index === array.length - 1;
