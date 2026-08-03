@@ -1,7 +1,7 @@
-export const GetRandom = ( number :number = 5):number[] => {
+export const GetRandom = ( length :number = 5 ):number[] => {
   let num: number[] = [];
 
-  for (let i = 1; i <= number; i++) {
+  for (let i = 1; i <= length; i++) {
     let n = Math.floor(Math.random() * 100);
     num = [...num, n];
   }
