@@ -50,14 +50,14 @@ const Input: React.FC<{
     };
 
     return (
-        <span className="flex justify-between items-center gap-3 bg-tertiary rounded-2xl px-3">
+        <span className="flex justify-between items-center gap-3 bg-tertiary rounded-2xl px-3  focus-within:outline-yellow focus-within:outline-2">
             <input
             ref={ref}
             type="tel"
             maxLength={2}
             pattern="[0-9]{1,2}"
             inputMode="numeric"
-            className="w-full h-12 rounded-md focus:outline-none pl-3 focus:ring-blue-500"
+            className="w-full h-12 rounded-md focus:outline-none pl-3"
             value={value}
             onChange={handleChange}
             onKeyDown={(e) => handleNext(e)}

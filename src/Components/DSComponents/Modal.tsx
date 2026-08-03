@@ -89,7 +89,7 @@ const Modal: React.FC<{
         <div
           id="modal"
           popover="manual"
-          className="w-full h-full bg-[#ffffff70] flex justify-center items-center dark:bg-[#0000004e] text-text"
+          className="w-full h-full bg-[#ffffff70] z-999 flex justify-center items-center dark:bg-[#0000004e] text-text"
         >
           <div className="w-1/3 overflow-auto  bg-secondry px-5 py-3 border border-border rounded-2xl">
             <div className="flex flex-col gap-3">
@@ -113,12 +113,19 @@ const Modal: React.FC<{
               {Selected == "Random" && (
                 <div className="flex justify-between items-center gap-3">
                   {DefaultValues.map((value, index) => (
-                    <span key={index} className="w-1/3  ">
-                      <label htmlFor="Label">{value.name}</label>
+                    <span key={index} className="w-1/3">
+                      <label
+                        htmlFor={value.name}
+                        className="cursor-pointer text-p text-sm"
+                      >
+                        {value.name}
+                      </label>
                       <input
                         type="number"
                         className="w-full bg-tertiary rounded-lg text-base py-2 px-3 focus:outline-yellow focus:outline-2 "
                         name=""
+                        min={0}
+                        max={10}
                         id={value.name}
                         value={value.value}
                       />
